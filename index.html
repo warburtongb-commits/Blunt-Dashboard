@@ -7,36 +7,39 @@
 <style>
   /* ── TOKENS ── */
   :root {
-    --bg:         #1F242B;
-    --surface:    #2B313A;
-    --surface2:   #3D4B46;
-    --border:     #252a38;
-    --border2:    #2e3547;
-    --text:       #F3F4F6;
-    --text-muted: #F3F4F6;
-    --text-dim:   #F3F4F6;
+    /* neutrals: white surfaces on warm light grey, dark brown type */
+    --bg:         #F5F2ED;
+    --surface:    #FFFFFF;
+    --surface2:   #EFEAE1;
+    --border:     #E1DACE;
+    --border2:    #C9B99F;
+    --text:       #33241B;
+    --text-muted: #6E5847;
+    --text-dim:   #9C8A78;
 
-    --pass:       #22c55e;
-    --pass-bg:    rgba(34,197,94,.12);
-    --fail:       #ef4444;
-    --fail-bg:    rgba(239,68,68,.12);
+    /* pass = light brown, fail = red */
+    --pass:       #96703F;
+    --pass-bg:    rgba(150,112,63,.14);
+    --fail:       #B3382C;
+    --fail-bg:    rgba(179,56,44,.12);
 
-    --B: #3b82f6;
-    --L: #22c55e;
-    --U: #eab308;
-    --N: #f97316;
-    --T: #a855f7;
+    /* BLUNT categories */
+    --B: #4A3728;  /* dark brown  */
+    --L: #A9825A;  /* light brown */
+    --U: #D9B44A;  /* pale yellow */
+    --N: #B3382C;  /* red         */
+    --T: #8C8378;  /* warm grey   */
 
-    --B-bg: rgba(59,130,246,.15);
-    --L-bg: rgba(34,197,94,.15);
-    --U-bg: rgba(234,179,8,.15);
-    --N-bg: rgba(249,115,22,.15);
-    --T-bg: rgba(168,85,247,.15);
+    --B-bg: rgba(74,55,40,.15);
+    --L-bg: rgba(169,130,90,.15);
+    --U-bg: rgba(217,180,74,.18);
+    --N-bg: rgba(179,56,44,.15);
+    --T-bg: rgba(140,131,120,.15);
 
-    --accent: #3b82f6;
+    --accent: #8A6A3E;
     --radius: 12px;
     --radius-sm: 8px;
-    --shadow: 0 4px 24px rgba(0,0,0,.45);
+    --shadow: 0 6px 20px rgba(51,36,27,.14);
   }
 
   /* ── RESET ── */
@@ -109,10 +112,10 @@
     background: var(--pass);
     display: inline-block;
     margin-right: 5px;
-    box-shadow: 0 0 6px var(--pass);
+    box-shadow: 0 0 0 3px var(--pass-bg);
   }
-  .status-dot.loading { background: var(--U); box-shadow: 0 0 6px var(--U); }
-  .status-dot.error   { background: var(--fail); box-shadow: 0 0 6px var(--fail); }
+  .status-dot.loading { background: var(--U); box-shadow: 0 0 0 3px var(--U-bg); }
+  .status-dot.error   { background: var(--fail); box-shadow: 0 0 0 3px var(--fail-bg); }
 
   main { padding: 28px 24px; max-width: 1400px; margin: 0 auto; width: 100%; flex: 1; }
 
@@ -243,13 +246,13 @@
     outline: none;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a8299' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239C8A78' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 10px center;
     transition: border-color .15s;
   }
   select.ctrl-select:hover { border-color: var(--border2); }
-  select.ctrl-select option { background: var(--surface2); }
+  select.ctrl-select option { background: var(--surface); }
 
   .results-count {
     margin-left: auto;
@@ -377,7 +380,7 @@
 
   .bar-track {
     height: 4px;
-    background: var(--border);
+    background: var(--surface2);
     border-radius: 2px;
     overflow: hidden;
   }
@@ -565,7 +568,7 @@
   .mini-bar-track {
     flex: 1;
     height: 3px;
-    background: var(--border);
+    background: var(--surface2);
     border-radius: 2px;
     overflow: hidden;
     min-width: 40px;
@@ -578,6 +581,7 @@
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: 6px;
+    border: 1px solid var(--border);
   }
   @keyframes shimmer {
     0%   { background-position: 200% 0; }
@@ -631,14 +635,14 @@
     gap: 10px;
   }
   .debug-banner.warn {
-    background: rgba(234,179,8,.1);
-    border: 1px solid rgba(234,179,8,.3);
-    color: #eab308;
+    background: rgba(217,180,74,.18);
+    border: 1px solid rgba(217,180,74,.55);
+    color: #7A5D1C;
   }
   .debug-banner.info {
-    background: rgba(59,130,246,.1);
-    border: 1px solid rgba(59,130,246,.3);
-    color: #93c5fd;
+    background: rgba(169,130,90,.14);
+    border: 1px solid rgba(169,130,90,.4);
+    color: #6B4E2F;
   }
   .debug-banner-close {
     margin-left: auto;
@@ -653,7 +657,7 @@
   /* ── REPORT DETAIL PANEL ── */
   .report-row { cursor: default; }
   .expand-btn {
-    background: var(--surface2);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
     color: var(--text-muted);
@@ -706,7 +710,7 @@
     color: var(--text-muted);
   }
   .action-num {
-    background: var(--accent);
+    background: var(--fail);
     color: #fff;
     border-radius: 50%;
     width: 18px; height: 18px;
@@ -729,7 +733,7 @@
   /* chart tooltip */
   .chart-tooltip {
     position: fixed;
-    background: var(--surface2);
+    background: var(--surface);
     border: 1px solid var(--border2);
     border-radius: var(--radius-sm);
     padding: 10px 14px;
@@ -911,13 +915,27 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw9xHGbV8Rk4l-1b-qK_B4Q
 
 /* Category display config */
 const CATS = [
-  { key: 'B', name: 'Begin',      color: '#3b82f6', bg: 'rgba(59,130,246,.15)'  },
-  { key: 'L', name: 'Learn',      color: '#22c55e', bg: 'rgba(34,197,94,.15)'   },
-  { key: 'U', name: 'Understand', color: '#eab308', bg: 'rgba(234,179,8,.15)'   },
-  { key: 'N', name: 'Narrow',     color: '#f97316', bg: 'rgba(249,115,22,.15)'  },
-  { key: 'T', name: 'Transition', color: '#a855f7', bg: 'rgba(168,85,247,.15)'  },
+  { key: 'B', name: 'Begin',      color: '#4A3728', bg: 'rgba(74,55,40,.15)'    },
+  { key: 'L', name: 'Learn',      color: '#A9825A', bg: 'rgba(169,130,90,.15)'  },
+  { key: 'U', name: 'Understand', color: '#D9B44A', bg: 'rgba(217,180,74,.18)'  },
+  { key: 'N', name: 'Narrow',     color: '#B3382C', bg: 'rgba(179,56,44,.15)'   },
+  { key: 'T', name: 'Transition', color: '#8C8378', bg: 'rgba(140,131,120,.15)' },
 ];
 const CAT_MAP = Object.fromEntries(CATS.map(c => [c.key, c]));
+
+/* Chart palette — kept in sync with the CSS tokens above */
+const CHART = {
+  grid:    '#E4DDD1',
+  axis:    '#9C8A78',
+  legend:  '#6E5847',
+  line:    '#8A6A3E',
+  fillTop: 'rgba(138,106,62,.22)',
+  fillBot: 'rgba(138,106,62,0)',
+  thresh:  'rgba(138,106,62,.45)',
+  pass:    '#96703F',
+  fail:    '#B3382C',
+  dotRing: '#FFFFFF',
+};
 
 const PASS_THRESHOLD = 60;
 const CAT_MAX        = 15;
@@ -1514,12 +1532,12 @@ function renderTrendChart(rows) {
   const toY = v => pad.top  + ch - ((v - min) / (max - min)) * ch;
 
   // Grid
-  ctx.strokeStyle = '#252a38';
+  ctx.strokeStyle = CHART.grid;
   ctx.lineWidth   = 1;
   [0,15,30,45,60,75].forEach(v => {
     const y = toY(v);
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+cw, y); ctx.stroke();
-    ctx.fillStyle = '#4a5268';
+    ctx.fillStyle = CHART.axis;
     ctx.font = '10px system-ui';
     ctx.textAlign = 'right';
     ctx.fillText(v, pad.left - 8, y + 3.5);
@@ -1527,7 +1545,7 @@ function renderTrendChart(rows) {
 
   // Pass threshold line
   const ty = toY(PASS_THRESHOLD);
-  ctx.strokeStyle = 'rgba(34,197,94,.35)';
+  ctx.strokeStyle = CHART.thresh;
   ctx.setLineDash([4, 4]);
   ctx.beginPath(); ctx.moveTo(pad.left, ty); ctx.lineTo(pad.left+cw, ty); ctx.stroke();
   ctx.setLineDash([]);
@@ -1535,8 +1553,8 @@ function renderTrendChart(rows) {
   // Area fill
   if (rows.length > 1) {
     const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top+ch);
-    grad.addColorStop(0, 'rgba(59,130,246,.2)');
-    grad.addColorStop(1, 'rgba(59,130,246,0)');
+    grad.addColorStop(0, CHART.fillTop);
+    grad.addColorStop(1, CHART.fillBot);
     ctx.fillStyle = grad;
     ctx.beginPath();
     ctx.moveTo(toX(0), toY(totals[0]));
@@ -1548,7 +1566,7 @@ function renderTrendChart(rows) {
   }
 
   // Line
-  ctx.strokeStyle = '#3b82f6';
+  ctx.strokeStyle = CHART.line;
   ctx.lineWidth   = 2.5;
   ctx.lineJoin    = 'round';
   ctx.beginPath();
@@ -1561,12 +1579,12 @@ function renderTrendChart(rows) {
     const pass = isPassing(v);
     ctx.beginPath();
     ctx.arc(x, y, 4, 0, Math.PI*2);
-    ctx.fillStyle = pass ? '#22c55e' : '#ef4444';
+    ctx.fillStyle = pass ? CHART.pass : CHART.fail;
     ctx.fill();
-    ctx.strokeStyle = '#0d0f14'; ctx.lineWidth = 1.5;
+    ctx.strokeStyle = CHART.dotRing; ctx.lineWidth = 1.5;
     ctx.stroke();
     // x label
-    ctx.fillStyle = '#4a5268'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = CHART.axis; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
     ctx.fillText(rowDate(rows[i]).replace(', ','\n').substring(0,6) || `#${i+1}`, x, h - 6);
   });
 
@@ -1602,7 +1620,7 @@ function trendHover(e, canvas) {
   TT.style.top  = (e.clientY - 10) + 'px';
   document.getElementById('tt-title').textContent = rowDate(row) || `Submission ${best+1}`;
   document.getElementById('tt-body').innerHTML =
-    `<div class="tooltip-row"><span class="tooltip-key">Total</span><span class="tooltip-val" style="color:${isPassing(t)?'#22c55e':'#ef4444'}">${t} / 75</span></div>` +
+    `<div class="tooltip-row"><span class="tooltip-key">Total</span><span class="tooltip-val" style="color:${isPassing(t)?CHART.pass:CHART.fail}">${t} / 75</span></div>` +
     CATS.map(c => `<div class="tooltip-row"><span class="tooltip-key" style="color:${c.color}">${c.key}</span><span class="tooltip-val">${Number(row[c.key])||0}</span></div>`).join('');
 }
 
@@ -1629,9 +1647,9 @@ function renderBreakdownChart(rows) {
   // Y grid
   [0,5,10,15].forEach(v => {
     const y = toY(v);
-    ctx.strokeStyle = '#252a38'; ctx.lineWidth = 1;
+    ctx.strokeStyle = CHART.grid; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+cw, y); ctx.stroke();
-    ctx.fillStyle = '#4a5268'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillStyle = CHART.axis; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
     ctx.fillText(v, pad.left - 8, y + 3.5);
   });
 
@@ -1649,7 +1667,7 @@ function renderBreakdownChart(rows) {
       ctx.fill();
     });
     // x label
-    ctx.fillStyle = '#4a5268'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = CHART.axis; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
     ctx.fillText(rowDate(row).substring(0,6) || `#${gi+1}`, gx + groupW/2, h - 6);
   });
 
@@ -1659,7 +1677,7 @@ function renderBreakdownChart(rows) {
   CATS.forEach(c => {
     ctx.fillStyle = c.color;
     ctx.fillRect(legX, legY, 8, 8);
-    ctx.fillStyle = '#7a8299'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillStyle = CHART.legend; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
     ctx.fillText(c.key, legX + 11, legY + 8);
     legX += 28;
   });
@@ -1692,12 +1710,12 @@ function breakdownHover(e, canvas) {
   TT.style.top  = (e.clientY - 10) + 'px';
   document.getElementById('tt-title').textContent = rowDate(row) || `Sub ${gi+1}`;
   document.getElementById('tt-body').innerHTML =
-    `<div class="tooltip-row"><span class="tooltip-key">Total</span><span class="tooltip-val" style="color:${isPassing(t)?'#22c55e':'#ef4444'}">${t} / 75</span></div>` +
+    `<div class="tooltip-row"><span class="tooltip-key">Total</span><span class="tooltip-val" style="color:${isPassing(t)?CHART.pass:CHART.fail}">${t} / 75</span></div>` +
     CATS.map(c => `<div class="tooltip-row"><span class="tooltip-key" style="color:${c.color}">${c.key} ${c.name}</span><span class="tooltip-val">${Number(row[c.key])||0} / ${CAT_MAX}</span></div>`).join('');
 }
 
 function drawEmpty(ctx, w, h, msg) {
-  ctx.fillStyle = '#4a5268';
+  ctx.fillStyle = CHART.axis;
   ctx.font = '13px system-ui';
   ctx.textAlign = 'center';
   ctx.fillText(msg, w/2, h/2);
